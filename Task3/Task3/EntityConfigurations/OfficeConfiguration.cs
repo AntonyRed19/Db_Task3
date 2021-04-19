@@ -13,7 +13,10 @@ namespace Task3.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Office> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Office").HasKey(o => o.Id);
+            builder.Property(o => o.Id).HasColumnName("TitleId");
+            builder.Property(o => o.Title).HasColumnName("Title").HasMaxLength(100);
+            builder.Property(o => o.Location).HasColumnName("Location").HasMaxLength(100);
         }
     }
 }
