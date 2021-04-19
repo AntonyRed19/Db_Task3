@@ -17,6 +17,6 @@ namespace Task3.Entities
         public Title Title { get; set; }
         public int TitleId { get; set; }
         public Office Office { get; set; }
-        public List<EmployeeProject> Users { get; set; } = new List<EmployeeProject>();
+        public List<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
     }
 }
