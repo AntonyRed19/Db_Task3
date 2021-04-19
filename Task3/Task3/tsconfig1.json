@@ -1,0 +1,7 @@
+{
+  {
+    "ConnectionStrings": {
+      "DefaultConnection": "Server=DESKTOP-GCCS405\\SQLEXPRESS;Database=CompanyDB;Integrated Security=True"
+    }
+  }
+}
