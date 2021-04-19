@@ -15,7 +15,7 @@ namespace Task3.EntityConfigurations
         {
             builder.ToTable("Title").HasKey(t => t.TitleId);
             builder.Property(t => t.TitleId).HasColumnName("TitleId");
-            builder.Property(t => t.Name).HasColumnName("Name").HasMaxLength(30);
+            builder.Property(t => t.Name).IsRequired().HasColumnName("Name").HasMaxLength(50);
         }
     }
 }
