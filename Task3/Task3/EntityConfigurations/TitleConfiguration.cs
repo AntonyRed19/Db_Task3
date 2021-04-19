@@ -16,10 +16,6 @@ namespace Task3.EntityConfigurations
             builder.ToTable("Title").HasKey(t => t.TitleId);
             builder.Property(t => t.TitleId).HasColumnName("TitleId");
             builder.Property(t => t.Name).HasColumnName("Name").HasMaxLength(30);
-            builder.HasOne(t => t.T)
-                .WithMany(e => e.)
-                .HasForeignKey(d => d.CompanyId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
