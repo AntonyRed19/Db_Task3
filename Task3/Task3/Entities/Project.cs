@@ -12,6 +12,6 @@ namespace Task3.Entities
         public string Name { get; set; }
         public decimal Badget { get; set; }
         public DateTime StartedDate { get; set; }
-        public List<EmployeeProject> Users { get; set; } = new List<EmployeeProject>();
+        public List<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
     }
 }

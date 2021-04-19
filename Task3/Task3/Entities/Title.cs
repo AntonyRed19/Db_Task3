@@ -11,6 +11,6 @@ namespace Task3.Entities
         public int TitleId { get; set; }
         public string Name { get; set; }
 
-        public List<Employee> Users { get; set; } = new List<Employee>();
+        public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 }
