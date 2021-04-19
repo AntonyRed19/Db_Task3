@@ -14,8 +14,8 @@ namespace Task3.Entities
         public DateTime HiredDate { get; set; }
         public DateTime DateofBirth { get; set; }
         public int OfficeId { get; set; }
+        public Title Title { get; set; }
         public int TitleId { get; set; }
-
-
+        public Office Office { get; set; }
     }
 }
