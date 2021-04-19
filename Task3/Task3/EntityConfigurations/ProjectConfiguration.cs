@@ -13,11 +13,11 @@ namespace Task3.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            builder.ToTable("User").HasKey(p => p.Id);
+            builder.ToTable("Project").HasKey(p => p.Id);
             builder.Property(p => p.Id).HasColumnName("ProjectId");
-            builder.Property(p => p.FirstName).IsRequired().HasColumnName("FirstName").HasMaxLength(20);
-            builder.Property(p => p.LastName).IsRequired().HasColumnName("LastName").HasMaxLength(20);
-            builder.Property(p => p.HiredDate).IsRequired().HasColumnName("HiredDate").HasColumnType("smalldatetime");
+            builder.Property(p => p.Name).HasColumnName("Name").HasMaxLength(20);
+            builder.Property(p => p.Badget).HasColumnName("Badget").HasColumnType("money");
+            builder.Property(p => p.StartedDate).HasColumnName("StaredDate").HasColumnType("date");
         }
     }
 }
