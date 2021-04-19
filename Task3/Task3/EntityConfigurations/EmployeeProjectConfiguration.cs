@@ -13,7 +13,7 @@ namespace Task3.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<EmployeeProject> builder)
         {
-            builder.ToTable("Employee").HasKey(e => e.Id);
+            builder.ToTable("EmployeeProject").HasKey(e => e.Id);
             builder.Property(ep => ep.Id).HasColumnName("EmployeeProjectId");
             builder.Property(ep => ep.Rate).IsRequired().HasColumnName("Rate").HasColumnType("money");
             builder.Property(ep => ep.StartedDate).IsRequired().HasColumnName("StartedDate").HasColumnType("datetime2(7)");
