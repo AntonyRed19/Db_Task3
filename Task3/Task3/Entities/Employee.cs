@@ -12,7 +12,7 @@ namespace Task3.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime HiredDate { get; set; }
-        public DateTime DateofBirth { get; set; }
+        public DateTime? DateofBirth { get; set; }
         public int OfficeId { get; set; }
         public Title Title { get; set; }
         public int TitleId { get; set; }
