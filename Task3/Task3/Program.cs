@@ -6,7 +6,8 @@ namespace Task3
     {
         public static void Main(string[] args)
         {
-            Console.Read();
+            var starter = new Starter();
+            starter.Run();
         }
     }
 }
