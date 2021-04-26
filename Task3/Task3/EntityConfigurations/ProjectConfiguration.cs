@@ -18,6 +18,10 @@ namespace Task3.EntityConfigurations
             builder.Property(p => p.Name).IsRequired().HasColumnName("Name").HasMaxLength(50);
             builder.Property(p => p.Badget).IsRequired().HasColumnName("Badget").HasColumnType("money");
             builder.Property(p => p.StartedDate).IsRequired().HasColumnName("StaredDate").HasColumnType("datetime2(7)");
+            builder.HasOne(e => e.Client)
+              .WithMany(e => e.Projects)
+              .HasForeignKey(e => e.ClientId)
+              .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
