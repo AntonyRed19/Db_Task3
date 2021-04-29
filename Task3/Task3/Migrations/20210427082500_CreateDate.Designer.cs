@@ -10,8 +10,8 @@ using Task3;
 namespace Task3.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210426162858_AddDatatoClientandProject")]
-    partial class AddDatatoClientandProject
+    [Migration("20210427082500_CreateDate")]
+    partial class CreateDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
