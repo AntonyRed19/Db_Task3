@@ -8,32 +8,33 @@ namespace Task3.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateofBith = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Office",
                 columns: table => new
                 {
-                    TitleId = table.Column<int>(type: "int", nullable: false)
+                    OfficeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Office", x => x.TitleId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Project",
-                columns: table => new
-                {
-                    ProjectId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Badget = table.Column<decimal>(type: "money", nullable: false),
-                    StaredDate = table.Column<DateTime>(type: "datetime2(7)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Project", x => x.ProjectId);
+                    table.PrimaryKey("PK_Office", x => x.OfficeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,6 +48,28 @@ namespace Task3.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Title", x => x.TitleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Project",
+                columns: table => new
+                {
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Badget = table.Column<decimal>(type: "money", nullable: false),
+                    StaredDate = table.Column<DateTime>(type: "datetime2(7)", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Project", x => x.ProjectId);
+                    table.ForeignKey(
+                        name: "FK_Project_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,7 +92,7 @@ namespace Task3.Migrations
                         name: "FK_Employee_Office_OfficeId",
                         column: x => x.OfficeId,
                         principalTable: "Office",
-                        principalColumn: "TitleId",
+                        principalColumn: "OfficeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employee_Title_TitleId",
@@ -126,6 +149,11 @@ namespace Task3.Migrations
                 name: "IX_EmployeeProject_ProjectId",
                 table: "EmployeeProject",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Project_ClientId",
+                table: "Project",
+                column: "ClientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -144,6 +172,9 @@ namespace Task3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Title");
+
+            migrationBuilder.DropTable(
+                name: "Client");
         }
     }
 }

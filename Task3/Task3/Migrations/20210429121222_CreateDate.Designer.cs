@@ -10,7 +10,7 @@ using Task3;
 namespace Task3.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210427082500_CreateDate")]
+    [Migration("20210429121222_CreateDate")]
     partial class CreateDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,7 +124,7 @@ namespace Task3.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("TitleId")
+                        .HasColumnName("OfficeId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Location")

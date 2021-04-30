@@ -10,7 +10,7 @@ using Task3;
 namespace Task3.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210424125308_InitialCreate")]
+    [Migration("20210429120933_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,30 @@ namespace Task3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Task3.Entities.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("DateofBith")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Client");
+                });
 
             modelBuilder.Entity("Task3.Entities.Employee", b =>
                 {
@@ -100,7 +124,7 @@ namespace Task3.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("TitleId")
+                        .HasColumnName("OfficeId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Location")
@@ -132,6 +156,9 @@ namespace Task3.Migrations
                         .HasColumnType("money")
                         .HasColumnName("Badget");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -143,6 +170,8 @@ namespace Task3.Migrations
                         .HasColumnName("StaredDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Project");
                 });
@@ -202,6 +231,22 @@ namespace Task3.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Task3.Entities.Project", b =>
+                {
+                    b.HasOne("Task3.Entities.Client", "Client")
+                        .WithMany("Projects")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("Task3.Entities.Client", b =>
+                {
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("Task3.Entities.Employee", b =>
